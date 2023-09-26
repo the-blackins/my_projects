@@ -1,0 +1,36 @@
+this is part of the file
+this is part of the new  file
+
+Idempotency and safety are two properties that describe how a REST API behaves when it receives a request from a client. Idempotency means that sending the
+same request multiple times will produce the same result, without changing the state of the server or the resource.
+
+
+Method 1: POST
+POST is the only RESTful API HTTP method that primarily operates on resource collections. When creating a subordinate resource in a collection, applying POST to the parent resource prompts it to create a new resource, associate it with the proper hierarchy and return a 
+dedicated URL for later reference. However, keep in mind that POST is not idempotent; you can't use this method more than once and expect a consistent outcome or result.
+
+A significant benefit of POST is that it enables developers to explicitly define resources. This feature helps prevent teams from accidentally creating subordinate resources that pollute code, muddy references and cause applications to experience problems.
+
+Method 2: PUT
+The single-resource equivalent of POST is PUT, which updates a resource by replacing its content entirely. As a RESTful API HTTP method, PUT is the most common way to update resource information.
+
+It's possible to create a resource with a PUT method, but this approach carries the risk of creating resources by accident, as noted above. If PUT is applied to a collection of resources, the entire resource collection gets replaced, which usually isn't the intention.
+
+Method 3: PATCH
+PATCH is another HTTP method used to update resources. As opposed to replacing resources, like the PUT method does, PATCH only modifies resource contents. As a general rule, these modifications should be expressed in a standard format like JSON or XML.
+
+Much like in PUT, it's poor practice to specifically apply PATCH methods to a whole resource collection -- that is, unless you truly intend to update every resource it contains.
+
+Method 4: GET
+The most common HTTP method is GET, which returns a representational view of a resource's contents and data. GET should be used in read-only mode, which keeps the data safe and the resource idempotent. You should get the same results no matter how many times you use this
+method, unless it is modified by another client in the interim.
+
+The GET method is sometimes used to change the contents of a resource, but this is a precarious use of the method. It's common to compromise a client's ability to PATCH a resource if the resource detects a change since the PATCH client last conducted a GET.
+
+Method 5: DELETE
+The last HTTP method to examine is DELETE. When a DELETE method targets a single resource, that resource is removed entirely.
+
+Implementations of DELETE are typically somewhat inconsistent: The URL for the resource may remain available even if the actual resource is absent. In this type of scenario, it's possible the server or resource implementation will still change the state of the vanished resource 
+using the URL, and likely react differently to subsequent DELETE executions.
+
+While it's certainly possible, you should generally avoid using the DELETE method in a resource collection since it will delete all the contents within. Remember, the method isn't idempotent, and shouldn't be treated as such.

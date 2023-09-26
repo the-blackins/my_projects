@@ -1,0 +1,4 @@
+ohk this is my first documentation on this project which is the currency exchange program or mpdule persay. basically this module which i have created, its sole function s to make exhchanges between variious currenciens. during the course of this program development i decided to do a prototype in which exchanges were made between the range of 8 different currencies. 
+how the program works:
+on starting this project i worked with abput 400 lines of if, elif, else statements and some input throughout the firts development. 
+it did work actually. but considering the complexity of the program i discovered that in a scenerio were we are dealing with larger inputs of data we would experience the worst case scenerio in both time complexity and space complexity of the program. so i decided to do a version control or an update to the program where i worked with classes, objects and list data structure. 
